@@ -1,9 +1,6 @@
-import com.google.common.base.CharMatcher;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-import java.util.StringTokenizer;
 
 public class TxtFile {
 
