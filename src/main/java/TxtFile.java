@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-public class TxtFile{
+public class TxtFile {
 
     private File fileName;
 
@@ -17,33 +17,35 @@ public class TxtFile{
         Scanner sc = new Scanner(fileName);
 
         StringBuilder parsedText = new StringBuilder();
-        while (sc.hasNextLine()){
+        while (sc.hasNextLine()) {
             parsedText.append(sc.nextLine());
         }
         return parsedText.toString();
     }
 
-    public int dotsQty(String text){
+    public int dotsQty(String text) {
         return CharMatcher.is('.').countIn(text);
     }
 
-    public int numberOfWords(String text){
-        if(text == null || text.isEmpty()){
+    public int numberOfWords(String text) {
+        if (text == null || text.isEmpty()) {
             return 0;
         }
         StringTokenizer tokens = new StringTokenizer(text);
         return tokens.countTokens();
     }
 
-    public String mostRepeatedWord(String text){
+    public String mostRepeatedWord(String text) {
         String[] arr = text.split(" ");
         int maxFreq = 0;
         String mostRepeated = null;
 
-        for (String temp : arr) {
+        for (int i = 0; i < arr.length; i++) {
+            String temp = arr[i];
             int count = 1;
-            for (String s : arr) {
-                if (temp.equals(s)) count++;
+            for (int j = i + 1; j < arr.length; j++) {
+                if (temp.equalsIgnoreCase(arr[j]))
+                    count++;
             }
             if (maxFreq < count) {
                 maxFreq = count;
