@@ -74,8 +74,8 @@ public class App {
         if (text == null || text.isEmpty()) {
             return 0;
         }
-        StringTokenizer tokens = new StringTokenizer(text);
-        return tokens.countTokens();
+        String[] words = text.split("\\s+");
+        return words.length;
     }
 
     public static String mostRepeatedWord(String text) {
