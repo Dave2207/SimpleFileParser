@@ -1,8 +1,10 @@
+import com.google.common.base.CharMatcher;
 import com.google.common.io.Files;
 
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.util.StringTokenizer;
 
 public class App {
 
@@ -33,9 +35,9 @@ public class App {
                         String fileText = txt.parseFile();
                         //Print statistics
                         System.out.println("File: " + file.getName());
-                        System.out.println("Total number of dots: " + txt.dotsQty(fileText));
-                        System.out.println("Total number of words: " + txt.numberOfWords(fileText));
-                        System.out.println("Most repeated word: " + txt.mostRepeatedWord(fileText));
+                        System.out.println("Total number of dots: " + dotsQty(fileText));
+                        System.out.println("Total number of words: " + numberOfWords(fileText));
+                        System.out.println("Most repeated word: " + mostRepeatedWord(fileText));
                         System.out.println("---------------------------------------------------------------------------");
                         //Copy file to "processed" sub-directory
                         try {
@@ -62,6 +64,38 @@ public class App {
     public static boolean isFileProcessed(File dir, File file) throws IOException {
         File child = new File(dir.getCanonicalPath() + File.separator + file.getName());
         return child.exists();
+    }
+
+    public static int dotsQty(String text) {
+        return CharMatcher.is('.').countIn(text);
+    }
+
+    public static int numberOfWords(String text) {
+        if (text == null || text.isEmpty()) {
+            return 0;
+        }
+        StringTokenizer tokens = new StringTokenizer(text);
+        return tokens.countTokens();
+    }
+
+    public static String mostRepeatedWord(String text) {
+        String[] arr = text.split(" ");
+        int maxFreq = 0;
+        String mostRepeated = null;
+
+        for (int i = 0; i < arr.length; i++) {
+            String temp = arr[i];
+            int count = 1;
+            for (int j = i + 1; j < arr.length; j++) {
+                if (temp.equalsIgnoreCase(arr[j]))
+                    count++;
+            }
+            if (maxFreq < count) {
+                maxFreq = count;
+                mostRepeated = temp;
+            }
+        }
+        return mostRepeated;
     }
 
 }
