@@ -14,20 +14,29 @@ public class FileParserTest {
         FileWriter fileW = new FileWriter(myFile);
         fileW.write("This is a test. The result needs to be 2.");
         fileW.close();
-        TxtFile myTxt = new TxtFile(myFile);
-        assert myTxt.dotsQty(fileW.toString()) == expected;
+        assert App.dotsQty(fileW.toString()) == expected;
         myFile.delete();
     }
 
 //    @Test
+//    public void testMostRepeated() throws IOException{
+//        String expected = "word";
+//        File myFile = new File("repeated.txt");
+//        FileWriter fileW = new FileWriter(myFile);
+//        fileW.write("word. Most repeated word is word");
+//        fileW.close();
+//        assert App.mostRepeatedWord(fileW.toString()).equalsIgnoreCase(expected);
+//        myFile.delete();
+//    }
+
+//    @Test
 //    public void testWordsCount() throws IOException {
-//        int expected = 10;
+//        int expected = 3;
 //        File myFile = new File("file2.txt");
 //        FileWriter fileW = new FileWriter(myFile);
-//        fileW.write("This is a test. The result needs to be ten.");
+//        fileW.write("A new thing");
 //        fileW.close();
-//        TxtFile myTxt = new TxtFile(myFile);
-//        assert myTxt.numberOfWords(fileW.toString()) == expected;
+//        assert App.numberOfWords(fileW.toString()) == expected;
 //        myFile.delete();
 //    }
 }
