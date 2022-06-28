@@ -17,9 +17,9 @@ public class FileParserTest {
         assert App.dotsQty(fileW.toString()) == expected;
         myFile.delete();
     }
-
+//
 //    @Test
-//    public void testMostRepeated() throws IOException{
+//    public void testMostRepeatedWord() throws IOException{
 //        String expected = "word";
 //        File myFile = new File("repeated.txt");
 //        FileWriter fileW = new FileWriter(myFile);
@@ -28,9 +28,9 @@ public class FileParserTest {
 //        assert App.mostRepeatedWord(fileW.toString()).equalsIgnoreCase(expected);
 //        myFile.delete();
 //    }
-
+//
 //    @Test
-//    public void testWordsCount() throws IOException {
+//    public void testNumberOfWords() throws IOException {
 //        int expected = 3;
 //        File myFile = new File("file2.txt");
 //        FileWriter fileW = new FileWriter(myFile);
