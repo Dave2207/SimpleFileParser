@@ -65,7 +65,9 @@ public class App {
     }
 
     public static int dotsQty(String text) {
-        return CharMatcher.is('.').countIn(text);
+        long count = text.chars().filter(ch -> ch == '.').count();
+
+        return ((int) count);
     }
 
     public static int numberOfWords(String text) {
