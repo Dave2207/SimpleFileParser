@@ -8,6 +8,7 @@ import java.util.List;
 public class App {
 
     private static String pathToFile;
+    private TxtFile logics = new TxtFile();
     public static void main(String[] args) throws IOException {
         pathToFile = args[0];
         //While(true) for the endless loop (Adding soon)
@@ -27,13 +28,13 @@ public class App {
             });
 
             for (File file: filesInPath) {
-                //1. Check if file is already processed
-                if(isFileProcessed(processedDir, file)){
-                    System.out.println(file + " is already processed");
+                //1. Check if file is already processed. DONE
+                if(!isFileProcessed(processedDir, file)){
+                    //2. Process the file
+
                 } else {
-                    System.out.println(file + " is not processed");
+                    break;
                 }
-                //2. Process the file
                 //3. Print statistics
                 //4. Copy file to "processed" sub-directory
             }
