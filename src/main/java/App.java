@@ -1,14 +1,10 @@
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
 
 public class App {
 
     private static String pathToFile;
-    private TxtFile logics = new TxtFile();
     public static void main(String[] args) throws IOException {
         pathToFile = args[0];
         //While(true) for the endless loop (Adding soon)
@@ -31,11 +27,15 @@ public class App {
                 //1. Check if file is already processed. DONE
                 if(!isFileProcessed(processedDir, file)){
                     //2. Process the file
-
+                    TxtFile txt = new TxtFile(file);
+                    String fileText = txt.parseFile();
+                    //3. Print statistics
+                    System.out.println("Total number of dots in File " + file.getName() + " : " + txt.dotsQty(fileText));
+                    System.out.println("Total number of words in File " + file.getName() + " : " + txt.numberOfWords(fileText));
+                    System.out.println("Most repeated word in File " + file.getName() + " : " + txt.dotsQty(fileText));
                 } else {
                     break;
                 }
-                //3. Print statistics
                 //4. Copy file to "processed" sub-directory
             }
         } else{

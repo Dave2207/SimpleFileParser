@@ -9,13 +9,12 @@ public class TxtFile{
 
     private File fileName;
 
-    public TxtFile() {
-        super();
-
+    public TxtFile(File fileName) {
+        this.fileName = fileName;
     }
 
-    public String parseFile(File file) throws FileNotFoundException {
-        Scanner sc = new Scanner(file);
+    public String parseFile() throws FileNotFoundException {
+        Scanner sc = new Scanner(fileName);
 
         StringBuilder parsedText = new StringBuilder();
         while (sc.hasNextLine()){
@@ -37,6 +36,20 @@ public class TxtFile{
     }
 
     public String mostRepeatedWord(String text){
-        return "";
+        String[] arr = text.split(" ");
+        int maxFreq = 0;
+        String mostRepeated = null;
+
+        for (String temp : arr) {
+            int count = 1;
+            for (String s : arr) {
+                if (temp.equals(s)) count++;
+            }
+            if (maxFreq < count) {
+                maxFreq = count;
+                mostRepeated = temp;
+            }
+        }
+        return mostRepeated;
     }
 }
