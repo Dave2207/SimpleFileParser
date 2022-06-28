@@ -1,8 +1,6 @@
-import com.google.common.base.CharMatcher;
 import com.google.common.io.Files;
-import java.io.File;
-import java.io.FilenameFilter;
-import java.io.IOException;
+
+import java.io.*;
 
 public class App {
 
@@ -38,11 +36,21 @@ public class App {
                         System.out.println("Most repeated word: " + mostRepeatedWord(fileText));
                         System.out.println("---------------------------------------------------------------------------");
                         //Copy file to "processed" sub-directory
+                        InputStream is = null;
+                        OutputStream os = null;
                         try {
                             String newRoute = processedDir.getCanonicalPath() + File.separator + file.getName();
-                            Files.copy(file, new File(newRoute));
-                        } catch (IOException e) {
-                            e.printStackTrace();
+                            //Files.copy(file, new File(newRoute));
+                            is = new FileInputStream(file);
+                            os = new FileOutputStream(new File(newRoute));
+                            byte[] buf = new byte[1024];
+                            int bytesRead;
+                            while((bytesRead = is.read(buf)) > 0){
+                                os.write(buf, 0, bytesRead);
+                            }
+                        } finally {
+                            is.close();
+                            os.close();
                         }
                     }
                 }
