@@ -26,18 +26,18 @@ public class App {
                 });
 
                 for (File file : filesInPath) {
-                    //1. Check if file is already processed. DONE
+                    //Check if file is already processed
                     if (!isFileProcessed(processedDir, file)) {
-                        //2. Process the file
+                        //Process the file
                         TxtFile txt = new TxtFile(file);
                         String fileText = txt.parseFile();
-                        //3. Print statistics
+                        //Print statistics
                         System.out.println("File: " + file.getName());
                         System.out.println("Total number of dots: " + txt.dotsQty(fileText));
                         System.out.println("Total number of words: " + txt.numberOfWords(fileText));
                         System.out.println("Most repeated word: " + txt.mostRepeatedWord(fileText));
                         System.out.println("---------------------------------------------------------------------------");
-                        //4. Copy file to "processed" sub-directory
+                        //Copy file to "processed" sub-directory
                         try {
                             String newRoute = processedDir.getCanonicalPath() + File.separator + file.getName();
                             Files.copy(file, new File(newRoute));
