@@ -1,21 +1,41 @@
 import java.io.File;
+import java.io.FilenameFilter;
+import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
 public class App {
 
-    private static String pathToFile = "";
-    private static ArrayList<File> myFiles;
-
-    public static void main(String[] args){
+    private static String pathToFile;
+    public static void main(String[] args) throws IOException {
         pathToFile = args[0];
-        //Se abre un loop para recorrer el directorio. Validar primero si es un directorio
+        //While(true) for the endless loop (Adding soon)
         if(isValidPath(pathToFile)){
             File f = new File(pathToFile);
-            String[] pathNames = f.list();
+            File processedDir = new File(pathToFile + "/processed");
+            //Create processed Sub-directory if doesn't exist already
+            if(!processedDir.exists()){
+                processedDir.mkdir();
+            }
+            //For this exercise, we check if file is supported using this FilenameFilter. But for scalability this will have to change
+            File[] filesInPath = f.listFiles(new FilenameFilter() {
+                @Override
+                public boolean accept(File dir, String name) {
+                    return name.endsWith(".txt");
+                }
+            });
 
-            for (String pathName: pathNames) {
-                System.out.println(pathName);
+            for (File file: filesInPath) {
+                //1. Check if file is already processed
+                if(isFileProcessed(processedDir, file)){
+                    System.out.println(file + " is already processed");
+                } else {
+                    System.out.println(file + " is not processed");
+                }
+                //2. Process the file
+                //3. Print statistics
+                //4. Copy file to "processed" sub-directory
             }
         } else{
             System.out.println("The path introduced is not a valid directory");
@@ -29,5 +49,9 @@ public class App {
         return file.isDirectory();
     }
 
+    public static boolean isFileProcessed(File dir, File file) throws IOException {
+        File child = new File(dir.getCanonicalPath() + File.separator + file.getName());
+        return child.exists();
+    }
 
 }
