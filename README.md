@@ -1,4 +1,5 @@
 ﻿# Simple File Parser
+## Note (Nov. 2024): this project corresponds to a 24 hours take-home assignment during the selection process for one of my previous jobs 
 This is a console application which receives a path to a directory as argument to start analyzing files with the supported extensions that the program manages. For now, the program only processes .txt files.
 
 This application checks continuously the directory for files to take statistics from, which right now are: total number of dots, total number of words and most repeated word. When a file gets processed, the program will make a copy of it and move it to a sub-directory in the previously specified path called "processed". 
